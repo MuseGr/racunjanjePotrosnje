@@ -54,7 +54,10 @@ button{
     background-color: var(--dark-green);
     color: var(--light-red);
 }
-
+.button_blink{
+    background-color: whitesmoke;
+    color: var(--light-red);
+}
 .input-container{
     width: 100%;
     height: 250px;
