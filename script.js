@@ -1,7 +1,6 @@
-    // Dodela tipa goriva
-const buttons = document.querySelectorAll('.btn-gorivo')
+const buttonsGorivo = document.querySelectorAll('.btn-gorivo')
 
-buttons.forEach(btn => {
+buttonsGorivo.forEach(btn => {
     btn.addEventListener('click', setActive)
     btn.addEventListener('click', dodeliGorivo)
 });
@@ -24,17 +23,23 @@ function dodeliGorivo(event) {
             break;
     }
 }
+let prosloOdabranoGorivo;
+
 function setActive(event){
-    console.log(gorivo);
-    if(gorivo != undefined){
-        //Blink na selektovano gorivo
-        const targetButton = document.getElementById(gorivo)
-        targetButton.classList.add("button_blink")
-        window.setInterval(() => {
-            targetButton.classList.remove("button_blink")
-        }, 250)
-    }else
+    if(prosloOdabranoGorivo === undefined){ // prvo odabrano gorvo
         event.target.classList.add("button-active")
+        prosloOdabranoGorivo = event.target.id;
+    }else{ // naredna goriva
+        //skini active sa proslog
+        buttonsGorivo.forEach(element => {
+            if(element.id === prosloOdabranoGorivo)
+                element.classList.remove("button-active")
+        });
+
+        //stavi active na trenutno
+        event.target.classList.add("button-active")
+        prosloOdabranoGorivo = event.target.id;
+    }
 }
 
     //Uzimanje user inputa i racunanje
@@ -73,3 +78,4 @@ let proveraVrednosti = (km, po) => {
 
     return true
 }
+
